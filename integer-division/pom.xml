@@ -6,11 +6,11 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ua.com.foxminded</groupId>
-  <artifactId>integer-division</artifactId>
+  <artifactId>division</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>integer-division</name>
+  <name>division</name>
   <url>http://www.example.com</url>
 
   <properties>

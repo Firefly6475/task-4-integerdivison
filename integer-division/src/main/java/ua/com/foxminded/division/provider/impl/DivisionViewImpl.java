@@ -4,7 +4,7 @@ import java.util.List;
 import ua.com.foxminded.division.domain.DivisionStep;
 import ua.com.foxminded.division.provider.DivisionViewProvider;
 
-public class DivisionViewService implements DivisionViewProvider {
+public class DivisionViewImpl implements DivisionViewProvider {
     private static final String MINUS_SYMBOL = "-";
     private static final String NEW_LINE_SYMBOL = "\n";
     private static final String VERTICAL_BAR_SYMBOL = "|";
@@ -13,8 +13,8 @@ public class DivisionViewService implements DivisionViewProvider {
 
     @Override
     public String provideView(int dividend, int divisor, List<DivisionStep> steps) {
-        return new String(
-                buildFirstThreeLines(dividend, divisor, steps.get(0)) + buildLastLines(steps));
+        String output = buildFirstThreeLines(dividend, divisor, steps.get(0));
+        return output.concat(buildLastLines(steps));
     }
 
     private String buildFirstThreeLines(int dividend, int divisor, DivisionStep step) {

@@ -13,8 +13,31 @@ public class DivisionViewImpl implements DivisionViewProvider {
 
     @Override
     public String provideView(int dividend, int divisor, List<DivisionStep> steps) {
+        if (steps.isEmpty()) {
+            return buildOnlyThreeLines(dividend, divisor);
+        }
         String output = buildFirstThreeLines(dividend, divisor, steps.get(0));
         return output.concat(buildLastLines(steps));
+    }
+    
+    private String buildOnlyThreeLines(int dividend, int divisor) {
+        StringBuilder lineBuilder = new StringBuilder();
+        final int result = dividend / divisor;
+        
+        int dividendLength = String.valueOf(dividend).length();
+        int resultLength = String.valueOf(result).length();
+        
+        lineBuilder.append(dividend);
+        lineBuilder.append(VERTICAL_BAR_SYMBOL + divisor);
+        lineBuilder.append(NEW_LINE_SYMBOL);
+        
+        lineBuilder.append(getMultipleSymbols(dividendLength, WHITESPACE_SYMBOL) + VERTICAL_BAR_SYMBOL);
+        lineBuilder.append(getMultipleSymbols(resultLength, MINUS_SYMBOL) + NEW_LINE_SYMBOL);
+
+        lineBuilder.append(getMultipleSymbols(dividendLength, WHITESPACE_SYMBOL));
+        lineBuilder.append(VERTICAL_BAR_SYMBOL + result + NEW_LINE_SYMBOL);
+        
+        return lineBuilder.toString();
     }
 
     private String buildFirstThreeLines(int dividend, int divisor, DivisionStep step) {

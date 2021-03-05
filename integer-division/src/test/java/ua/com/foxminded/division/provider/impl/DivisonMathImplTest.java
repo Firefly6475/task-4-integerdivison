@@ -8,8 +8,8 @@ import ua.com.foxminded.division.domain.DivisionStep;
 import ua.com.foxminded.division.provider.DivisionMathProvider;
 
 public class DivisonMathImplTest {
-    final static DivisionMathProvider divisionMathProvider = new DivisionMathImpl();
-    
+    private final DivisionMathProvider divisionMathProvider = new DivisionMathImpl();
+
     @Test
     void provideMathCalculationShouldReturnStepsIfFirstDividendDigitCanBeDivided() {
         List<DivisionStep> expectedSteps = new ArrayList<>();
@@ -44,6 +44,46 @@ public class DivisonMathImplTest {
                 .withOffset(5).build());
         expectedSteps.add(DivisionStep.builder().withMinuend(25).withSubtrahend(24).withQuotient(1)
                 .withOffset(6).build());
+
+        assertEquals(expectedSteps, actualSteps);
+    }
+
+    @Test
+    void provideMathCalculationShouldReturnEmptyStepsIfDividendIsZero() {
+        List<DivisionStep> expectedSteps = new ArrayList<>();
+        List<DivisionStep> actualSteps = divisionMathProvider.provideMathCalculation(0, 10);
+
+        assertEquals(expectedSteps, actualSteps);
+    }
+
+    @Test
+    void provideMathCalculationShouldReturnStepsIfDividendEqualsDivisor() {
+        List<DivisionStep> expectedSteps = new ArrayList<>();
+        List<DivisionStep> actualSteps = divisionMathProvider.provideMathCalculation(10, 10);
+
+        expectedSteps.add(DivisionStep.builder().withMinuend(10).withSubtrahend(10).withQuotient(0)
+                .withOffset(1).build());
+
+        assertEquals(expectedSteps, actualSteps);
+    }
+
+    @Test
+    void provideMathCalculationShouldReturnStepsIfDividendMuchGreaterThanDivisor() {
+        List<DivisionStep> expectedSteps = new ArrayList<>();
+        List<DivisionStep> actualSteps = divisionMathProvider.provideMathCalculation(100008, 5);
+
+        expectedSteps.add(DivisionStep.builder().withMinuend(10).withSubtrahend(10).withQuotient(0)
+                .withOffset(1).build());
+        expectedSteps.add(DivisionStep.builder().withMinuend(8).withSubtrahend(5).withQuotient(3)
+                .withOffset(5).build());
+
+        assertEquals(expectedSteps, actualSteps);
+    }
+
+    @Test
+    void provideMathCalculationShouldReturnEmptyStepsIfDividendIsLessThanDivisor() {
+        List<DivisionStep> expectedSteps = new ArrayList<>();
+        List<DivisionStep> actualSteps = divisionMathProvider.provideMathCalculation(5, 8);
 
         assertEquals(expectedSteps, actualSteps);
     }

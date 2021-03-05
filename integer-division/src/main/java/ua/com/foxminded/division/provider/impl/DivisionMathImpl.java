@@ -9,6 +9,9 @@ public class DivisionMathImpl implements DivisionMathProvider {
     public ArrayList<DivisionStep> provideMathCalculation(int dividend, int divisor) {
         int length = String.valueOf(dividend).length() - 1;
         ArrayList<DivisionStep> steps = new ArrayList<>();
+        if (dividend < divisor) {
+            return steps;
+        }
         boolean isDigitWentDown = false;
         int minuend = calculateMinuend(dividend, length);
         int offset = 0;

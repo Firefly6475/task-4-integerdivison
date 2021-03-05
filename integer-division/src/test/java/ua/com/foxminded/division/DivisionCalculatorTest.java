@@ -1,7 +1,9 @@
 package ua.com.foxminded.division;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.doNothing;
+import static org.mockito.Mockito.doThrow;
 import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import org.junit.jupiter.api.Test;
@@ -46,9 +48,7 @@ public class DivisionCalculatorTest {
         steps.add(DivisionStep.builder().withMinuend(25).withSubtrahend(24).withQuotient(1)
                 .withOffset(4).build());
 
-        String expectedView = "_78945|4\n" + " 4    |-----\n" + " -    |19736\n" + "_38\n" + " 36\n"
-                + " --\n" + " _29\n" + "  28\n" + "  --\n" + "  _14\n" + "   12\n" + "   --\n"
-                + "   _25\n" + "    24\n" + "    --\n" + "     1";
+        String expectedView = new String();
 
         doNothing().when(validator).validate(dividend, divisor);
         when(divisionMathProvider.provideMathCalculation(dividend, divisor)).thenReturn(steps);
@@ -58,5 +58,41 @@ public class DivisionCalculatorTest {
         String actualView = divisionCalculator.calculate(78945, 4);
 
         assertEquals(expectedView, actualView);
+    }
+
+    @Test
+    void calculateShouldThrowIllegalArgumentExceptionIfDividendIsNegative() {
+        int dividend = -2350;
+        int divisor = 4;
+
+        doThrow(new IllegalArgumentException("Argument dividend is negative")).when(validator)
+                .validate(dividend, divisor);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            divisionCalculator.calculate(dividend, divisor);
+        });
+
+        String expectedMessage = "Argument dividend is negative";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
+    }
+
+    @Test
+    void calculateShouldThrowIllegalArgumentExceptionIfDivisorIsNegative() {
+        int dividend = 2350;
+        int divisor = -5;
+
+        doThrow(new IllegalArgumentException("Argument divisor is 0 or negative")).when(validator)
+                .validate(dividend, divisor);
+
+        Exception exception = assertThrows(IllegalArgumentException.class, () -> {
+            divisionCalculator.calculate(dividend, divisor);
+        });
+
+        String expectedMessage = "Argument divisor is 0 or negative";
+        String actualMessage = exception.getMessage();
+
+        assertEquals(expectedMessage, actualMessage);
     }
 }

@@ -1,5 +1,7 @@
 package ua.com.foxminded.division.domain;
 
+import java.util.Objects;
+
 public class DivisionStep {
     private final int minuend;
     private final int subtrahend;
@@ -39,33 +41,19 @@ public class DivisionStep {
 
     @Override
     public int hashCode() {
-        final int prime = 31;
-        int result = 1;
-        result = prime * result + minuend;
-        result = prime * result + offset;
-        result = prime * result + quotient;
-        result = prime * result + subtrahend;
-        return result;
+        return Objects.hashCode(getClass());
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
-            return true;
-        if (obj == null)
+        if (obj == null) {
             return false;
-        if (getClass() != obj.getClass())
+        }
+        if (this.getClass() != obj.getClass()) {
             return false;
+        }
         DivisionStep other = (DivisionStep) obj;
-        if (minuend != other.minuend)
-            return false;
-        if (offset != other.offset)
-            return false;
-        if (quotient != other.quotient)
-            return false;
-        if (subtrahend != other.subtrahend)
-            return false;
-        return true;
+        return (Objects.equals(other, obj));
     }
 
     @Override

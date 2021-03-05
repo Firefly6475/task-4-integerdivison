@@ -15,6 +15,6 @@ public class DivisionConsoleApplication {
 
         DivisionCalculator divisionCalculator =
                 new DivisionCalculator(validator, divisionMathProvider, divisionViewProvider);
-        System.out.print(divisionCalculator.calculate(78945, 4));
+        System.out.print(divisionCalculator.calculate(100008, 5));
     }
 }

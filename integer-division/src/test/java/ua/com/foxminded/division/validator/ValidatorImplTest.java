@@ -1,11 +1,12 @@
 package ua.com.foxminded.division.validator;
 
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 import org.junit.jupiter.api.Test;
 
 public class ValidatorImplTest {
-    Validator validator = new ValidatorImpl();
+    private final Validator validator = new ValidatorImpl();
 
     @Test
     void validateShouldThrowIllegalArgumentExceptionIfDivisorIsZero() {
@@ -41,6 +42,11 @@ public class ValidatorImplTest {
         String actualMessage = exception.getMessage();
 
         assertEquals(expectedMessage, actualMessage);
+    }
+    
+    @Test
+    void validateShouldNotThrowIllegalArgumentException() {
+        assertDoesNotThrow(() -> validator.validate(124, 12));
     }
 
 

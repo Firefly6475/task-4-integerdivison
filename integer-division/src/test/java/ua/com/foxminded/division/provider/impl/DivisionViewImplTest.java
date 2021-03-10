@@ -31,16 +31,36 @@ public class DivisionViewImplTest {
         
         List<DivisionStep> steps = new ArrayList<>();
 
-        steps.add(DivisionStep.builder().withMinuend(7).withSubtrahend(4).withQuotient(3).withOffset(0)
+        steps.add(DivisionStep.builder()
+                .withMinuend(7)
+                .withSubtrahend(4)
+                .withQuotient(3)
+                .withOffset(1)
                 .build());
-        steps.add(DivisionStep.builder().withMinuend(38).withSubtrahend(36).withQuotient(2)
-                .withOffset(1).build());
-        steps.add(DivisionStep.builder().withMinuend(29).withSubtrahend(28).withQuotient(1)
-                .withOffset(2).build());
-        steps.add(DivisionStep.builder().withMinuend(14).withSubtrahend(12).withQuotient(2)
-                .withOffset(3).build());
-        steps.add(DivisionStep.builder().withMinuend(25).withSubtrahend(24).withQuotient(1)
-                .withOffset(4).build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(38)
+                .withSubtrahend(36)
+                .withQuotient(2)
+                .withOffset(2)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(29)
+                .withSubtrahend(28)
+                .withQuotient(1)
+                .withOffset(3)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(14)
+                .withSubtrahend(12)
+                .withQuotient(2)
+                .withOffset(4)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(25)
+                .withSubtrahend(24)
+                .withQuotient(1)
+                .withOffset(5)
+                .build());
 
         String actualView = divisionViewProvider.provideView(78945, 4, steps);
 
@@ -67,8 +87,12 @@ public class DivisionViewImplTest {
                             + "  0";
 
         List<DivisionStep> steps = new ArrayList<>();
-        steps.add(DivisionStep.builder().withMinuend(10).withSubtrahend(10).withQuotient(0)
-                .withOffset(1).build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(10)
+                .withSubtrahend(10)
+                .withQuotient(0)
+                .withOffset(1)
+                .build());
         String actualView = divisionViewProvider.provideView(10, 10, steps);
 
         assertEquals(expectedView, actualView);
@@ -76,7 +100,29 @@ public class DivisionViewImplTest {
     
     @Test
     void provideViewShouldReturnStringViewIfDividendIsMuchGreaterThanDivisor() {
-        
+        String expectedView = "_100008|5\n"
+                            + " 10    |-----\n"
+                            + " --    |20001\n"
+                            + "     _8\n"
+                            + "      5\n"
+                            + "      -\n"
+                            + "      3";
+        List<DivisionStep> steps = new ArrayList<>();
+        steps.add(DivisionStep.builder()
+                .withMinuend(10)
+                .withSubtrahend(10)
+                .withQuotient(0)
+                .withOffset(1)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(8)
+                .withSubtrahend(5)
+                .withQuotient(3)
+                .withOffset(7)
+                .build());
+        String actualView = divisionViewProvider.provideView(100008, 5, steps);
+
+        assertEquals(expectedView, actualView);
     }
     
     @Test

@@ -1,5 +1,6 @@
 package ua.com.foxminded.division;
 
+import java.util.Scanner;
 import ua.com.foxminded.division.provider.DivisionMathProvider;
 import ua.com.foxminded.division.provider.DivisionViewProvider;
 import ua.com.foxminded.division.provider.impl.DivisionMathImpl;
@@ -12,9 +13,15 @@ public class DivisionConsoleApplication {
         Validator validator = new ValidatorImpl();
         DivisionMathProvider divisionMathProvider = new DivisionMathImpl();
         DivisionViewProvider divisionViewProvider = new DivisionViewImpl();
+        Scanner in = new Scanner(System.in);
 
         DivisionCalculator divisionCalculator =
                 new DivisionCalculator(validator, divisionMathProvider, divisionViewProvider);
-        System.out.print(divisionCalculator.calculate(100008, 5));
+        System.out.println("Enter dividend");
+        int dividend = in.nextInt();
+        System.out.println("Enter divisor");
+        int divisor = in.nextInt();
+        in.close();
+        System.out.println(divisionCalculator.calculate(dividend, divisor));
     }
 }

@@ -11,7 +11,6 @@
   <packaging>jar</packaging>
 
   <name>division</name>
-  <url>http://www.example.com</url>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -75,7 +74,7 @@
               <addClasspath>true</addClasspath>
               <classpathPrefix>libs/</classpathPrefix>
               <mainClass>
-                ua.com.foxminded.integer_division.IntegerDivisionConsoleApplication
+                ua.com.foxminded.division.DivisionConsoleApplication
               </mainClass>
             </manifest>
           </archive>

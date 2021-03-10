@@ -41,19 +41,22 @@ public class DivisionStep {
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getClass());
+        return Objects.hash(minuend, offset, quotient, subtrahend);
     }
 
     @Override
     public boolean equals(Object obj) {
-        if (obj == null) {
+        if (this == obj)
+            return true;
+        if (obj == null)
             return false;
-        }
-        if (this.getClass() != obj.getClass()) {
+        if (getClass() != obj.getClass())
             return false;
-        }
         DivisionStep other = (DivisionStep) obj;
-        return (Objects.equals(other, obj));
+        return Objects.equals(minuend, other.minuend) &&
+                Objects.equals(offset, other.offset) && 
+                Objects.equals(quotient, other.quotient) &&
+                Objects.equals(subtrahend, other.subtrahend);
     }
 
     @Override

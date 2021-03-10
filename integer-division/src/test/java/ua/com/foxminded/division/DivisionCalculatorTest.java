@@ -37,16 +37,36 @@ public class DivisionCalculatorTest {
         int dividend = 78945;
         int divisor = 4;
 
-        steps.add(DivisionStep.builder().withMinuend(7).withSubtrahend(4).withQuotient(3).withOffset(0)
+        steps.add(DivisionStep.builder()
+                .withMinuend(7)
+                .withSubtrahend(4)
+                .withQuotient(3)
+                .withOffset(0)
                 .build());
-        steps.add(DivisionStep.builder().withMinuend(38).withSubtrahend(36).withQuotient(2)
-                .withOffset(1).build());
-        steps.add(DivisionStep.builder().withMinuend(29).withSubtrahend(28).withQuotient(1)
-                .withOffset(2).build());
-        steps.add(DivisionStep.builder().withMinuend(14).withSubtrahend(12).withQuotient(2)
-                .withOffset(3).build());
-        steps.add(DivisionStep.builder().withMinuend(25).withSubtrahend(24).withQuotient(1)
-                .withOffset(4).build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(38)
+                .withSubtrahend(36)
+                .withQuotient(2)
+                .withOffset(1)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(29)
+                .withSubtrahend(28)
+                .withQuotient(1)
+                .withOffset(2)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(14)
+                .withSubtrahend(12)
+                .withQuotient(2)
+                .withOffset(3)
+                .build());
+        steps.add(DivisionStep.builder()
+                .withMinuend(25)
+                .withSubtrahend(24)
+                .withQuotient(1)
+                .withOffset(4)
+                .build());
 
         String expectedView = new String();
 

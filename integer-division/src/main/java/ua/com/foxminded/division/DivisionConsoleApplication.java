@@ -13,15 +13,16 @@ public class DivisionConsoleApplication {
         Validator validator = new ValidatorImpl();
         DivisionMathProvider divisionMathProvider = new DivisionMathImpl();
         DivisionViewProvider divisionViewProvider = new DivisionViewImpl();
-        Scanner in = new Scanner(System.in);
-
         DivisionCalculator divisionCalculator =
                 new DivisionCalculator(validator, divisionMathProvider, divisionViewProvider);
-        System.out.println("Enter dividend");
-        int dividend = in.nextInt();
-        System.out.println("Enter divisor");
-        int divisor = in.nextInt();
-        in.close();
+        int dividend = 0;
+        int divisor = 0;
+        try (Scanner in = new Scanner(System.in)) {
+            System.out.println("Enter dividend");
+            dividend = in.nextInt();
+            System.out.println("Enter divisor");
+            divisor = in.nextInt();
+        }
         System.out.println(divisionCalculator.calculate(dividend, divisor));
     }
 }

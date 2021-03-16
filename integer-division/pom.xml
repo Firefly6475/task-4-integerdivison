@@ -6,18 +6,18 @@
   <modelVersion>4.0.0</modelVersion>
 
   <groupId>ua.com.foxminded</groupId>
-  <artifactId>integer-division</artifactId>
+  <artifactId>division</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <packaging>jar</packaging>
 
-  <name>integer-division</name>
-  <url>http://www.example.com</url>
+  <name>division</name>
 
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <maven.compiler.source>1.8</maven.compiler.source>
     <maven.compiler.target>1.8</maven.compiler.target>
     <junit.jupiter.version>5.7.1</junit.jupiter.version>
+    <mockito.version>3.8.0</mockito.version>
   </properties>
 
   <dependencies>
@@ -31,6 +31,18 @@
       <groupId>org.junit.jupiter</groupId>
       <artifactId>junit-jupiter-api</artifactId>
       <version>${junit.jupiter.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-core</artifactId>
+      <version>${mockito.version}</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.mockito</groupId>
+      <artifactId>mockito-junit-jupiter</artifactId>
+      <version>${mockito.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -62,7 +74,7 @@
               <addClasspath>true</addClasspath>
               <classpathPrefix>libs/</classpathPrefix>
               <mainClass>
-                ua.com.foxminded.integer_division.IntegerDivisionConsoleApplication
+                ua.com.foxminded.division.DivisionConsoleApplication
               </mainClass>
             </manifest>
           </archive>

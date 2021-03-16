@@ -86,7 +86,7 @@ public class DivisionMathImpl implements DivisionMathProvider {
         if (minuend == 0) {
             return offset + 1;
         }
-        if (isMinuendZero && minuend != 0) {
+        if (isMinuendZero) {
             return offset - 1;
         }
         return offset;
@@ -96,7 +96,7 @@ public class DivisionMathImpl implements DivisionMathProvider {
         if (minuend == 0) {
             return true;
         }
-        if (isMinuendZero && minuend != 0) {
+        if (isMinuendZero) {
             return false;
         }
         return isMinuendZero;

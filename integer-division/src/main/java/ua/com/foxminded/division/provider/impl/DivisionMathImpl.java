@@ -59,8 +59,6 @@ public class DivisionMathImpl implements DivisionMathProvider {
         return number >= divisor;
     }
 
-    
-
     private DivisionStep getStep(int minuend, int divisor, int offset) {
         int subtrahend = getSubtrahend(minuend, divisor);
         int quotient = getQuotient(minuend, subtrahend);
@@ -88,7 +86,7 @@ public class DivisionMathImpl implements DivisionMathProvider {
         if (minuend == 0) {
             return offset + 1;
         }
-        else if (isMinuendZero) {
+        if (isMinuendZero && minuend != 0) {
             return offset - 1;
         }
         return offset;
@@ -98,10 +96,10 @@ public class DivisionMathImpl implements DivisionMathProvider {
         if (minuend == 0) {
             return true;
         }
-        else if (isMinuendZero) {
+        if (isMinuendZero && minuend != 0) {
             return false;
         }
-        return false;
+        return isMinuendZero;
     }
     
 }

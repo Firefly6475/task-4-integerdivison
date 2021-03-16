@@ -46,12 +46,12 @@ public class DivisionStep {
 
     @Override
     public boolean equals(Object obj) {
-        if (this == obj)
+        if (this == obj) {
             return true;
-        if (obj == null)
+        }
+        if (obj == null || getClass() != obj.getClass()) {
             return false;
-        if (getClass() != obj.getClass())
-            return false;
+        }
         DivisionStep other = (DivisionStep) obj;
         return Objects.equals(minuend, other.minuend) &&
                 Objects.equals(offset, other.offset) && 
